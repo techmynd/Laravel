@@ -1,0 +1,295 @@
+routes in laravel 5.3 is different
+routes in 5.4 is a seperate folder
+==================================
+vscode extension > laravel blade snippets
+==================================
+https://marketplace.visualstudio.com/items?itemName=onecentlin.laravel5-snippets
+
+b:extends	@extends
+b:yield	@yield
+b:section	@section...@endsection
+b:section-show	@section...@show
+b:if	@if...@endif
+b:if-else	@if...@else...@endif
+b:unless	@unless...@endunless
+b:has-section	@hasSection...@else...@endif
+b:for	@for...@endfor
+b:foreach	@foreach...@endforeach
+
+==============
+
+
+laravel command line > Artisan Console / artisan cli
+blade template engine for views
+laravel mix to compile assets
+use scss
+
+
+
+what artisan can do
+====================
+- create controllers and models
+- create db migration files and run migrations
+- create providers, events, jobs, requests form requests
+- show routes
+- session commands
+- run tinker
+- create custom commands
+
+
+
+artisan commands
+==================
+$ php artisan list (all available commands)
+$ php artisan help migrate (see help on migrate command)
+// model should be singular / controller should be plural
+$ php artisan make:controller TodosController
+$ php artisan make:model Todo -m (-m tell we also want to create migration for this model)
+$ php artisan make:migration add_todos_to_db-table=todos
+$ php artisan migrate
+$ php artisan tinker
+
+
+
+Eloquent Object Relational Mapper (ORM)
+=======================================
+- easy query and working with db
+
+> Use App\Todo;
+> $todo = new Todo;
+> $todo->title='Some Todo';
+> $todo->save();
+
+
+
+
+get composer
+============
+getcomposer.org
+install composer
+
+composer is dependency manager
+
+> composer -v
+
+> composer create-project laravel/laravel myapp
+
+add V-Hosts and hosts file entry
+
+
+=========================================
+// app.blade.php
+
+<title>App Name - @yield('title')<title>
+
+<body>
+
+@section('sidebar')
+this is master sidebar
+@show
+
+<div class="container">
+ @yield('content')
+</div>
+
+</body>
+=========================================
+
+
+http://localhost/projects/laravel/app-one/public/
+
+edit hosts
+==========
+go to apache folder
+
+E:\xampp\apache
+E:\xampp\apache\conf\extra
+
+edit httpd-vhosts.conf file // add these
+
+<VirtualHost *:80>
+  DocumentRoot "E:\xampp\htdocs"
+  ServerName localhost
+</VirtualHost>
+
+<VirtualHost *:80>
+  DocumentRoot "E:\xampp\htdocs\projects\laravel\app-one-traversy\public"
+  ServerName lsapp.my
+</VirtualHost>
+
+edit hosts file in windows
+==========================
+C:\Windows\System32\drivers\etc
+add these 
+
+127.0.0.1    localhost
+127.0.0.1    lsapp.my
+
+dont use .dev / it will say connection not private
+
+restart apache
+go to lsapp.my for site
+
+==========================
+
+Models
+======
+app/user.php is a model
+
+all models will go in app folder
+you can create subfolder models if u like
+
+namespace in model is identifier
+
+use illuminate\...
+illuminate is laravel core
+
+Controllers
+===========
+controllers are in app/Http/Controllers
+
+app/Http/Controllers/Controller.php is a base controller which extends BaseControllrt
+
+app/Http/Controllers/Auth has auth controllers
+
+============================================
+use artisan to create models and controllers / dont do manually
+============================================
+
+Views
+=====
+views are in resources folder
+resources/views
+
+home.blade.php
+about.blade.php
+services.blade.php
+contact.blade.php
+
+
+routes
+======
+@if (Route::has('login'))
+// login
+@endif
+
+========================
+
+routing
+========
+
+Route::get('/', function () {
+    return view('welcome');
+    //return 'Hello World';
+});
+
+Route::get('/about', function () {
+    return view('pages/about/about');
+    // or
+    // return view('pages.about');
+    // if page about is in pages folder
+});
+
+Route::get('/contact', function () {
+    return view('pages/contact/contact');
+});
+
+// dynamic route
+Route::get('/users/{id}', function ($id) {
+    return 'this is user: '.$id;
+    // http://lsapp.my/users/javed
+});
+
+Route::get('/users/{id}/{name}', function ($id, $name) {
+    return 'this is user '.$name.' with an id '.$id;
+    // http://lsapp.my/users/2/javed
+});
+
+/*
+Route::post('', function () {});
+Route::delete('', function () {});
+*/
+
+////////// about routes
+=======================
+// Do not return view from route like above
+// create a controller, set route to go to a certain controller function and 
+// then return view
+
+// create controller by using artisan
+
+$ php artisan make:controller PagesController
+
+=====================
+
+/public path at server
+======================
+
+https://stackoverflow.com/questions/30198669/how-to-change-public-folder-to-public-html-in-laravel-5
+
+https://www.webhostface.com/kb/knowledgebase/laravel-public-folder/
+
+https://developerhowto.com/2018/11/12/how-to-change-the-laravel-public-folder/
+
+https://laracasts.com/discuss/channels/laravel/laravel-5-only-home-page-route-working-on-live-server
+
+https://laracasts.com/discuss/channels/laravel/home-route-not-working-on-cpanel?page=0
+
+https://www.youtube.com/watch?v=GboCYqEbKN0
+
+https://dev.to/asapabedi/deploying-laravel-5-applications-on-shared-hosting-without-the-use-of-ssh--16a6
+
+https://laravel.io/forum/03-06-2015-how-to-setup-laravel-5-in-shared-hosting
+
+https://medium.com/@Bohr/deploy-laravel-application-on-shared-hosting-godaddy-953758dc57ac
+
+=============================
+
+
+link assets from public css or js
+<link rel="stylesheet" href="{{asset('css/app.css')}}">
+<script src="{{asset('js/app.js')}}"></script>
+
+laravel has bootstrap by default, u have to link it
+
+> npm install
+in the root directory to install dependencies
+
+'resources' folder is like 'src' > change thing there
+'public' folder is like 'dist' > dont change things there - thats output
+
+compile assets again
+https://laravel.com/docs/5.8/mix
+
+> npm run dev
+> npm run production
+> npm run watch
+
+make sure hard reload to see changes and clear cache
+
+scss is included and can be used.
+sass/app.scss
+
+
+include stuff
+==============
+resources/views/inc/navbar.blade.php
+@include('inc.navbar')
+
+
+app name
+========
+{{config('app.name', 'Simple App')}}
+
+active class
+============
+{{ Request::is('/') ? 'active' : '' }}
+{{ Request::is('about') ? 'active' : '' }}
+
+
+
+
+
+
+
+
