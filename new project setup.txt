@@ -18,6 +18,8 @@ Route::get('/', 'PagesController@index');
 Route::get('/about', 'PagesController@about');
 Route::get('/contact', 'PagesController@contact');
 
+php artisan make:controller PagesController
+
 create pages controller (PagesController)
 =========================================
     public function index(){
@@ -79,7 +81,7 @@ include stuff
 resources/views/inc/navbar.blade.php
 @include('inc.navbar')
 
-$ php artisan make:controller PagesController
+> php artisan make:controller PagesController
 
 
 =========================================
@@ -113,6 +115,22 @@ $ php artisan tinker
 > $todo = new Todo;
 > $todo->title='Some Todo';
 > $todo->save();
+
+database
+=========
+.env will have db and password for database
+
+
+db commands
+=============
+> php artisan make:model tbl_menu -m
+  // -m refers to create migration as well
+  // this will create a tbl_menu.php as model in app folder
+  // in it you define db table name and primary key
+  
+> php artisan make:model tbl_menu
+
+
 
 
 

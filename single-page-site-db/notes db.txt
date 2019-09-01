@@ -1,0 +1,32 @@
+> php artisan make:model tbl_pages -m
+
+tbl_pages.php
+==============
+class tbl_pages extends Model
+{
+    protected $table = 'tbl_pages';
+    protected $primaryKey = 'id';
+}
+
+
+and in migration file use this
+
+    public function up()
+    {
+        Schema::create('tbl_pages', function (Blueprint $table) {
+            $table->increments('pid');
+            $table->string('title');
+            $table->string('slug');
+            $table->longtext('details');
+            $table->string('order');
+            $table->string('status');
+            $table->timestamps();
+        });
+    }
+
+> php artisan migrate
+
+cut paste old migration files before running new migrations and then after new tables get created, move back old migration files
+
+>  php artisan make:controller adminController
+
