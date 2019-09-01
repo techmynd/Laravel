@@ -1,0 +1,119 @@
+vscode extension > laravel blade snippets
+
+> composer create-project laravel/laravel myapp
+
+change server.php file name to index.php from root of laravel installation
+now you can access site without public in url
+
+copy .htaccess from public to root also
+then routes will work
+
+- config/app.php contains url for project
+- .env contains configurables
+
+
+routes/web.php contains routes
+==============================
+Route::get('/', 'PagesController@index');
+Route::get('/about', 'PagesController@about');
+Route::get('/contact', 'PagesController@contact');
+
+create pages controller (PagesController)
+=========================================
+    public function index(){
+        return view('index');
+    }
+    public function about(){
+        return view('about');
+    }
+    public function contact(){
+        return view('contact');
+    }
+
+
+it gies like this
+=================
+web.php has gou routes 
+/ goes to pagesController and looks for index call
+in pagesController index call calls the home view
+home view extends index view in its top (header / footer come from index)
+@extends('index')
+and then home view has its own content
+
+
+
+- create frontend folder and admin folder in public directory and resources/views directory
+- create index.blade.php in views/frontend folder
+- create inc folder in resources/views directory // for partials
+
+> npm install
+> npm run dev
+> npm run production
+> npm run watch
+
+app name
+========
+{{config('app.name', 'Simple App')}}
+
+active class
+============
+{{ Request::is('/') ? 'active' : '' }}
+{{ Request::is('about') ? 'active' : '' }}
+
+correct way of linking in views
+===============================
+
+<a href="{{ url('/') }}">Home</a>
+<a href="{{ url('/contact') }}">Contact</a>
+
+<link rel="stylesheet" href="{{asset('public/css/app.css')}}">
+<script src="{{asset('public/js/app.js')}}"></script>
+
+or
+
+<link rel="stylesheet" href="{{url('public/css/app.css')}}">
+<script src="{{url('public/js/app.js')}}"></script>
+
+include stuff
+==============
+resources/views/inc/navbar.blade.php
+@include('inc.navbar')
+
+$ php artisan make:controller PagesController
+
+
+=========================================
+// app.blade.php
+
+<title>App Name - @yield('title')<title>
+
+<body>
+
+@section('sidebar')
+this is master sidebar
+@show
+
+<div class="container">
+ @yield('content')
+</div>
+
+</body>
+=========================================
+
+
+$ php artisan make:controller TodosController
+$ php artisan make:model Todo -m 
+  //(-m tell we also want to create migration for this model)
+$ php artisan make:migration add_todos_to_db-table=todos
+$ php artisan migrate
+$ php artisan tinker
+
+
+> Use App\Todo;
+> $todo = new Todo;
+> $todo->title='Some Todo';
+> $todo->save();
+
+
+
+https://www.youtube.com/watch?v=bW8OAD5Vzo8

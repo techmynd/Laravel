@@ -289,7 +289,11 @@ active class
 
 
 
+correct way of linking in views
+===============================
 
+<a href="{{ url('/') }}">Home</a>
+<a href="{{ url('/contact') }}">Contact</a>
 
 
 
