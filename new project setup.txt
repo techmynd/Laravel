@@ -132,6 +132,38 @@ db commands
 
 
 
+do one thing
+============
+// Providers/AppServiceProvider.php
+// add this
+use Illuminate\Support\Facades\Schema;
+
+and then in boot area
+public function boot()
+    {
+        Schema::defaultStringLength(191);
+    }
+// to avoid some strange error
+
+
+add data to database
+====================
+// start tinker
+> php artisan tinker
+// example
+> App\modelname::count();
+// 
+> App\tbl_Pages::count();
+// start instance
+> $page = new App\tbl_Pages();
+> $page->title = 'Home';
+> $page->slug = '/';
+> $page->details = 'Lorem ipsum, dolor.';
+> $page->order = '1';
+> $page->status = '1';
+> $page->save();
+
 
 
 https://www.youtube.com/watch?v=bW8OAD5Vzo8
+cheat sheet: https://learninglaravel.net/cheatsheet/
