@@ -1,2 +1,5 @@
 https://laravelcollective.com
 
+https://www.cloudways.com/blog/best-laravel-packages/
+https://packalyst.com
+
