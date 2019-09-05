@@ -1,0 +1,5 @@
+https://www.youtube.com/watch?v=3MS9T15ki_g
+
+https://backpackforlaravel.com/docs/3.6
+
+packages for backend dev
