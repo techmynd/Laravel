@@ -3,3 +3,16 @@ https://laravelcollective.com
 https://www.cloudways.com/blog/best-laravel-packages/
 https://packalyst.com
 
+
+
+
+https://awesomerepos.com/laravel
+
+https://github.com/meSingh/awesome-laravel
+https://github.com/TimothyDJones/awesome-laravel
+https://github.com/unnawut/awesome-laravel
+https://github.com/chiraggude/awesome-laravel
+
+https://github.com/jpmurray/awesome-spark
+https://github.com/fukuball/Awesome-Laravel-Education
+

@@ -1,0 +1,2 @@
+http://labs.infyom.com/laravelgenerator/docs/6.0/introduction
+
